@@ -4,3 +4,21 @@ class ServicioError extends Error {
     this.name = "ServicioError";
   }
 }
+function obtenerDatosUsuario() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const exito = Math.random() > 0.3;
+      if (exito) {
+        resolve({ usuario: "Ana", rol: "estudiante" });
+      } else {
+        reject(new ServicioError("No se pudo conectar con el servicio"));
+      }
+    }, 800);
+  });
+}
+const boton = document.getElementById("btnCargar");
+const resultado = document.getElementById("resultado");
+
+boton.addEventListener("click", async () => {
+  resultado.textContent = "Cargando...";
+});
